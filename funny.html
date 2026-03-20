@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Anushka Birthday Surprise 😏❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-family:Arial;
+  background:linear-gradient(to right,#ff9a9e,#fad0c4);
+  overflow:hidden;
+  text-align:center;
+  color:white;
+}
+
+h1{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+#btn{
+  position:absolute;
+  padding:15px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#msg{
+  margin-top:20px;
+  font-size:20px;
+}
+
+/* floating hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:float 5s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-800px);}
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Hey Birthday Girl Anushka 😏❤️</h1>
+<p>Intha button ah click pannura try pannunga 👀</p>
+
+<button id="btn">Click pannunga 😜</button>
+
+<p id="msg"></p>
+
+<script>
+let count = 0;
+let btn = document.getElementById("btn");
+let msg = document.getElementById("msg");
+
+// Button moves away when hovered
+btn.onmouseover = function(){
+  count++;
+  btn.style.left = Math.random()*80 + "vw";
+  btn.style.top = Math.random()*80 + "vh";
+
+  // <<< ONLY YOUR THANGLISH MESSAGES >>>
+  if(count == 2){
+    msg.innerHTML = "Hehehe buchuku buchuku   😜";
+  }
+  else if(count == 4){
+    msg.innerHTML = "Aiyayayo innum trying ah? 😂";
+  }
+  else if(count == 6){
+    msg.innerHTML = "Achcho anuku kovam varuthu pola? 😏";
+  }
+  else if(count == 8){
+    msg.innerHTML = "Saringa okay innum pona avlotha dead naa 😭❤️";
+  }
+  else if(count >= 10){
+    msg.innerHTML = "Fine unmaikum... click now 💖";
+
+    // Stop moving
+    btn.onmouseover = null;
+
+    // Center the button
+    btn.style.position = "relative";
+    btn.style.left = "0";
+    btn.style.top = "0";
+
+    // Make button clickable to main surprise page
+    btn.onclick = function(){
+      window.location.href = "index.html"; // <-- keep your main page link here
+    };
+  }
+}
+
+// Floating hearts
+function createHeart(){
+  let heart = document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.bottom="0";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),5000);
+}
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
