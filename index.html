@@ -1,71 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Birthday Cake 🎂</title>
+<title>Anushka Birthday Surprise 😏❤️</title>
 
 <style>
-body {
-  text-align: center;
-  font-family:  Courier New ;
-  background: linear-gradient(to right,#ff9a9e,#fad0c4);
-  color: white;
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-family:Arial;
+  background:linear-gradient(to right,#ff9a9e,#fad0c4);
+  overflow:hidden;
+  text-align:center;
+  color:white;
 }
 
-h1 {
-  margin-top: 20px;
+h1{
+  font-size:35px;
+  margin-bottom:10px;
 }
 
-#cake {
-  font-size: 100px;
-  margin-top: 20px;
+#btn{
+  position:absolute;
+  padding:15px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-#candles {
-  font-size: 40px;
+#msg{
+  margin-top:20px;
+  font-size:20px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 18px;
-  margin: 10px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
+/* floating hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:float 5s linear infinite;
 }
 
-#cutBtn, #feedSection {
-  display: none;
-}
-
-#avatars {
-  display: none;
-  margin-top: 20px;
-}
-
-.avatar {
-  font-size: 50px;
-  margin: 10px;
-}
-
-#finalMsg {
-  display: none;
-  font-size: 24px;
-  margin-top: 20px;
-  color: #fff;
-}
-
-/* Confetti */
-.confetti {
-  position: fixed;
-  font-size: 20px;
-  animation: fall 3s linear;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
+@keyframes float{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-800px);}
 }
 </style>
 
@@ -73,65 +57,68 @@ button {
 
 <body>
 
-<h1 style="color:red;"> 🎉 Happy Birthday Anuku Ma 🎂</h1>
-<br>
-<br>
-<h2 style="color:purple;"> Wishing you the greatest and the most wonderful year ahead thangam I love you so much kanmani❤️
-<div id="cake">🎂</div>
-<div id="candles">🕯🕯🕯</div>
+<h1>Hey Birthday Girl Anushka 😏❤️</h1>
+<p>Intha button ah click pannura try pannunga 👀</p>
 
-<button onclick="blowCandles()">Blow Candles 💨</button>
+<button id="btn">Click pannunga 😜</button>
 
-<br>
-
-<button id="cutBtn" onclick="cutCake()">Cut Cake 🔪</button>
-
-<div id="avatars">
-  <h3>Makku Sid &  Pretty Anukuu 👫</h3>
-  <div class="avatar">🧑‍🦱 🍰 👩</div>
-  <button onclick="feedCake()">Feed Cake ❤️</button>
-</div>
-
-<div id="finalMsg" style="color:purple;">
-  💖 I wish I was there to celebrate with you...  
-  but I’ll always make sure you smile Naa iruken ma for you SI Love You So Much SweetHeart❤️  
-</div>
+<p id="msg"></p>
 
 <script>
+let count = 0;
+let btn = document.getElementById("btn");
+let msg = document.getElementById("msg");
 
-function blowCandles() {
-  document.getElementById("candles").innerHTML = "✨✨✨";
-  document.getElementById("cutBtn").style.display = "inline-block";
-  createConfetti();
-}
+// Button moves away when hovered
+btn.onmouseover = function(){
+  count++;
+  btn.style.left = Math.random()*80 + "vw";
+  btn.style.top = Math.random()*80 + "vh";
 
-function cutCake() {
-  document.getElementById("cake").innerHTML = "🍰";
-  document.getElementById("avatars").style.display = "block";
-  createConfetti();
-}
+  // <<< ONLY YOUR THANGLISH MESSAGES >>>
+  if(count == 2){
+    msg.innerHTML = "Hehehe buchuku buchuku   😜";
+  }
+  else if(count == 4){
+    msg.innerHTML = "Aiyayayo innum trying ah? 😂";
+  }
+  else if(count == 6){
+    msg.innerHTML = "Achcho anuku kovam varuthu pola? 😏";
+  }
+  else if(count == 8){
+    msg.innerHTML = "Saringa okay innum pona avlotha dead naa 😭❤️";
+  }
+  else if(count >= 10){
+    msg.innerHTML = "Fine unmaikum... click now 💖";
 
-function feedCake() {
-  document.querySelector(".avatar").innerHTML = "🧑‍🦱👉🍰👩";
-  document.getElementById("finalMsg").style.display = "block";
-  createConfetti();
-}
+    // Stop moving
+    btn.onmouseover = null;
 
-function createConfetti() {
-  for (let i = 0; i < 40; i++) {
-    let confetti = document.createElement("div");
-    confetti.innerHTML = "🎉";
-    confetti.className = "confetti";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.top = "0";
-    document.body.appendChild(confetti);
+    // Center the button
+    btn.style.position = "relative";
+    btn.style.left = "0";
+    btn.style.top = "0";
 
-    setTimeout(() => confetti.remove(), 3000);
+    // Make button clickable to main surprise page
+    btn.onclick = function(){
+      window.location.href = "index.html"; // <-- keep your main page link here
+    };
   }
 }
 
+// Floating hearts
+function createHeart(){
+  let heart = document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.bottom="0";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),5000);
+}
+setInterval(createHeart,400);
 </script>
 
 </body>
 </html>
-
